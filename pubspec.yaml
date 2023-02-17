@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   font_awesome_flutter: 10.3.0
+  video_player: 2.5.1
 
 dev_dependencies:
   flutter_test:
@@ -60,8 +61,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/videos/mp_img.mp4
+    - assets/videos/IMG_7574.MOV
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
