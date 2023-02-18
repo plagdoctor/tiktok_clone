@@ -13,7 +13,7 @@ class _VideoTimelineScreenState extends State<VideoTimelineScreen> {
 
   final PageController _pageController = PageController();
 
-  final Duration _scrollDuration = const Duration(milliseconds: 200);
+  final Duration _scrollDuration = const Duration(milliseconds: 250);
   final Curve _scrollCurve = Curves.linear;
 
   void _onPageChanged(int page) {
@@ -29,12 +29,15 @@ class _VideoTimelineScreenState extends State<VideoTimelineScreen> {
   }
 
   void _onVideoFinished() {
-    _pageController.nextPage(duration: _scrollDuration, curve: _scrollCurve);
+    return;
+    _pageController.nextPage(
+      duration: _scrollDuration,
+      curve: _scrollCurve,
+    );
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _pageController.dispose();
     super.dispose();
   }
