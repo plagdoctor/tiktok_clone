@@ -37,7 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   font_awesome_flutter: 10.3.0
+
   video_player: 2.5.1
+
+  visibility_detector: 0.3.3
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +66,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/videos/mp_img.mp4
+    - assets/videos/mp_img2.mp4
     - assets/videos/IMG_7574.MOV
 
   #   - images/a_dot_ham.jpeg
