@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/videos/widgets/summary_text.dart';
 import 'package:tiktok_clone/features/videos/widgets/video_button.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -24,7 +25,7 @@ class VideoPost extends StatefulWidget {
 class _VideoPostState extends State<VideoPost>
     with SingleTickerProviderStateMixin {
   final VideoPlayerController _videoPlayerController =
-      VideoPlayerController.asset("assets/videos/mp_img2.mp4");
+      VideoPlayerController.asset("assets/videos/mp_img3.mp4");
   final Duration _animationDuration = const Duration(milliseconds: 200);
 
   late final AnimationController _animationController;
@@ -143,12 +144,19 @@ class _VideoPostState extends State<VideoPost>
                       fontWeight: FontWeight.bold),
                 ),
                 Gaps.v10,
-                Text(
-                  "this is my kid!!",
-                  style: TextStyle(
-                    fontSize: Sizes.size16,
-                    color: Colors.white,
-                  ),
+                // Text(
+                //   "this is my kid!!",
+                //   style: TextStyle(
+                //     fontSize: Sizes.size16,
+                //     color: Colors.white,
+                //   ),
+                // ),
+                Padding(
+                  padding: EdgeInsets.all(0.0),
+                  child: SummaryWidget(
+                      text:
+                          '국무총리는 대통령을 보좌하며, \n행정에 관하여 대통령의 명을 받아 행정각부를 통할한다. \n모든 국민은 법률이 정하는 바에 의하여 선거권을 가진다. 국가안전보장에 관련되는 대외정책·군사정책과 국내정책의 수립에 관하여\n국무회의의 심의에 앞서 대통령의 자문에 응하기 위하여 국가안전보장회의를 둔다.\n',
+                      maxLines: 2),
                 ),
               ],
             ),
