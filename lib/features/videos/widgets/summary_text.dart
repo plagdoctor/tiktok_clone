@@ -40,13 +40,13 @@ class _SummaryWidgetState extends State<SummaryWidget> {
               Text(
                 _showMore ? 'See less' : 'See more',
                 style: const TextStyle(
-                  color: Colors.black54,
+                  color: Colors.black45,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Icon(
                 _showMore ? Icons.arrow_drop_up : Icons.arrow_drop_down,
-                color: Colors.blue,
+                color: _showMore ? Colors.black12 : Colors.black45,
               ),
             ],
           ),
