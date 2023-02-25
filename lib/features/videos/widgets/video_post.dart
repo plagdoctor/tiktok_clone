@@ -97,6 +97,8 @@ class _VideoPostState extends State<VideoPost>
 
     await showModalBottomSheet(
       context: context,
+      //코멘트 박스 사이즈 바꿔줄수 있게 변경
+      isScrollControlled: true,
       builder: (context) => const VideoComments(),
     );
   }
