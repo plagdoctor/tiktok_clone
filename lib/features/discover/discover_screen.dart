@@ -13,17 +13,149 @@ final tabs = [
   "Brands",
 ];
 
-class DiscoverScreen extends StatelessWidget {
+class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});
+
+  @override
+  State<DiscoverScreen> createState() => _DiscoverScreenState();
+}
+
+class _DiscoverScreenState extends State<DiscoverScreen>
+    with SingleTickerProviderStateMixin {
+  final TextEditingController _textEditingController =
+      TextEditingController(text: "");
+  late TabController _tabController;
+
+  String _searchWord = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController.addListener(() {
+      setState(() {
+        _searchWord = _textEditingController.text;
+      });
+    });
+
+    _tabController = TabController(
+      length: tabs.length,
+      vsync: this,
+    );
+
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) {
+        setState(() {
+          _onStopSearch();
+        });
+      }
+    });
+  }
+
+  void _onClearTap() {
+    _textEditingController.clear();
+  }
+
+  void _onStopSearch() {
+    FocusScope.of(context).unfocus();
+  }
+
+  // void _onSearchChanged(String value) {
+  //   print("Searching form $value");
+  // }
+
+  void _onSearchSubmitted() {
+    if (_searchWord != "") {
+      print("서밋 내용: $_searchWord");
+    }
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           elevation: 1,
-          title: const Text('Discover'),
+          // title: CupertinoSearchTextField(
+          //   controller: _textEditingController,
+          //   onChanged: _onSearchChanged,
+          //   onSubmitted: _onSearchSubmitted,
+          // ),
+          title: SizedBox(
+            height: Sizes.size44,
+            child: TextField(
+              expands: true,
+              minLines: null,
+              maxLines: null,
+              controller: _textEditingController,
+              textInputAction: TextInputAction.search,
+              onEditingComplete: _onSearchSubmitted,
+              cursorColor: Theme.of(context).primaryColor,
+              decoration: InputDecoration(
+                hintText: "search anything...",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(
+                    Sizes.size12,
+                  ),
+                  borderSide: BorderSide.none,
+                ),
+                filled: true,
+                fillColor: Colors.grey.shade200,
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: Sizes.size12,
+                ),
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.only(right: Sizes.size14),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.magnifyingGlass,
+                        color: Colors.grey.shade800,
+                      ),
+                    ],
+                  ),
+                ),
+                suffixIcon: Padding(
+                  padding: const EdgeInsets.only(right: Sizes.size14),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      if (_searchWord.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.only(right: Sizes.size10),
+                          child: GestureDetector(
+                            onTap: _onClearTap,
+                            child: FaIcon(
+                              FontAwesomeIcons.solidCircleXmark,
+                              color: Colors.grey.shade600,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const FaIcon(FontAwesomeIcons.sliders),
+              tooltip: "option",
+            ),
+          ],
           bottom: TabBar(
             splashFactory: NoSplash.splashFactory,
             padding: const EdgeInsets.symmetric(

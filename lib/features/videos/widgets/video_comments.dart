@@ -185,7 +185,7 @@ class _VideoCommentsState extends State<VideoComments> {
                                   )),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
