@@ -102,6 +102,8 @@ class _VideoPostState extends State<VideoPost>
       context: context,
       //코멘트 박스 사이즈 바꿔줄수 있게 변경
       isScrollControlled: true,
+      //코멘트 borderradius 주기 위해서 필요함
+      backgroundColor: Colors.transparent,
       builder: (context) => const VideoComments(),
     );
   }
