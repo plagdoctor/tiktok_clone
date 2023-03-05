@@ -57,11 +57,11 @@ class _DiscoverScreenState extends State<DiscoverScreen>
     _textEditingController.clear();
   }
 
-  void _onStopSearch() {
+  void _onKeyboardOff() {
     FocusScope.of(context).unfocus();
   }
 
-  void _onTapTapBar(int _) {
+  void _onKeyboardOffForTabBar(int index) {
     FocusScope.of(context).unfocus();
   }
 
@@ -165,7 +165,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
           bottom: TabBar(
             splashFactory: NoSplash.splashFactory,
             // controller: _tabController,
-            onTap: _onTapTapBar,
+            onTap: _onKeyboardOffForTabBar,
             padding: const EdgeInsets.symmetric(
               horizontal: Sizes.size16,
             ),
@@ -186,7 +186,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
           ),
         ),
         body: GestureDetector(
-          onTap: _onStopSearch,
+          onTap: _onKeyboardOff,
           child: TabBarView(
             children: [
               GridView.builder(
