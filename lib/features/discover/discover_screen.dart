@@ -21,7 +21,9 @@ class DiscoverScreen extends StatefulWidget {
 }
 
 class _DiscoverScreenState extends State<DiscoverScreen>
-    with SingleTickerProviderStateMixin {
+// 굳이 리스너로 받을 필요는 없어보임
+// with SingleTickerProviderStateMixin
+{
   final TextEditingController _textEditingController =
       TextEditingController(text: "");
   late TabController _tabController;
@@ -37,18 +39,18 @@ class _DiscoverScreenState extends State<DiscoverScreen>
       });
     });
 
-    _tabController = TabController(
-      length: tabs.length,
-      vsync: this,
-    );
-
-    _tabController.addListener(() {
-      if (!_tabController.indexIsChanging) {
-        setState(() {
-          _onStopSearch();
-        });
-      }
-    });
+    // 굳이 리스너로 받을 필요는 없어보임
+    // _tabController = TabController(
+    //   length: tabs.length,
+    //   vsync: this,
+    // );
+    // _tabController.addListener(() {
+    //   if (!_tabController.indexIsChanging) {
+    //     setState(() {
+    //       _onStopSearch();
+    //     });
+    //   }
+    // });
   }
 
   void _onClearTap() {
@@ -56,6 +58,10 @@ class _DiscoverScreenState extends State<DiscoverScreen>
   }
 
   void _onStopSearch() {
+    FocusScope.of(context).unfocus();
+  }
+
+  void _onTapTapBar(int _) {
     FocusScope.of(context).unfocus();
   }
 
@@ -133,7 +139,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                     children: [
                       if (_searchWord.isNotEmpty)
                         Padding(
-                          padding: const EdgeInsets.only(right: Sizes.size10),
+                          padding: const EdgeInsets.only(right: Sizes.size4),
                           child: GestureDetector(
                             onTap: _onClearTap,
                             child: FaIcon(
@@ -158,6 +164,8 @@ class _DiscoverScreenState extends State<DiscoverScreen>
           ],
           bottom: TabBar(
             splashFactory: NoSplash.splashFactory,
+            // controller: _tabController,
+            onTap: _onTapTapBar,
             padding: const EdgeInsets.symmetric(
               horizontal: Sizes.size16,
             ),
@@ -177,94 +185,97 @@ class _DiscoverScreenState extends State<DiscoverScreen>
             ],
           ),
         ),
-        body: TabBarView(
-          children: [
-            GridView.builder(
-              itemCount: 20,
-              padding: const EdgeInsets.all(
-                Sizes.size6,
-              ),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: Sizes.size10,
-                mainAxisSpacing: Sizes.size10,
-                childAspectRatio: 9 / 20,
-              ),
-              itemBuilder: (context, index) => Column(
-                children: [
-                  Container(
-                    clipBehavior: Clip.hardEdge,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Sizes.size4),
-                    ),
-                    child: AspectRatio(
-                      aspectRatio: 9 / 16,
-                      child: FadeInImage.assetNetwork(
-                        fit: BoxFit.cover,
-                        placeholder: "assets/images/placeholder.png",
-                        image:
-                            "https://images.unsplash.com/photo-1673844969019-c99b0c933e90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80",
+        body: GestureDetector(
+          onTap: _onStopSearch,
+          child: TabBarView(
+            children: [
+              GridView.builder(
+                itemCount: 20,
+                padding: const EdgeInsets.all(
+                  Sizes.size6,
+                ),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: Sizes.size10,
+                  mainAxisSpacing: Sizes.size10,
+                  childAspectRatio: 9 / 20,
+                ),
+                itemBuilder: (context, index) => Column(
+                  children: [
+                    Container(
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Sizes.size4),
+                      ),
+                      child: AspectRatio(
+                        aspectRatio: 9 / 16,
+                        child: FadeInImage.assetNetwork(
+                          fit: BoxFit.cover,
+                          placeholder: "assets/images/placeholder.png",
+                          image:
+                              "https://images.unsplash.com/photo-1673844969019-c99b0c933e90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80",
+                        ),
                       ),
                     ),
-                  ),
-                  Gaps.v10,
-                  const Text(
-                    "This is a very long caption for my tiktok that im upload just now currently.",
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: TextStyle(
-                      fontSize: Sizes.size16 + Sizes.size2,
-                      fontWeight: FontWeight.bold,
+                    Gaps.v10,
+                    const Text(
+                      "This is a very long caption for my tiktok that im upload just now currently.",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: TextStyle(
+                        fontSize: Sizes.size16 + Sizes.size2,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  Gaps.v8,
-                  DefaultTextStyle(
-                    style: TextStyle(
-                      color: Colors.grey.shade600,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    child: Row(
-                      children: [
-                        const CircleAvatar(
-                          radius: 12,
-                          backgroundImage: NetworkImage(
-                            "https://avatars.githubusercontent.com/u/42507121?v=4",
+                    Gaps.v8,
+                    DefaultTextStyle(
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      child: Row(
+                        children: [
+                          const CircleAvatar(
+                            radius: 12,
+                            backgroundImage: NetworkImage(
+                              "https://avatars.githubusercontent.com/u/42507121?v=4",
+                            ),
                           ),
-                        ),
-                        Gaps.h4,
-                        const Expanded(
-                          child: Text(
-                            "My avatar is going to be very long",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                          Gaps.h4,
+                          const Expanded(
+                            child: Text(
+                              "My avatar is going to be very long",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
-                        ),
-                        Gaps.h4,
-                        FaIcon(
-                          FontAwesomeIcons.heart,
-                          size: Sizes.size16,
-                          color: Colors.grey.shade600,
-                        ),
-                        Gaps.h2,
-                        const Text(
-                          "2.5M",
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            for (var tab in tabs.skip(1))
-              Center(
-                child: Text(
-                  tab,
-                  style: const TextStyle(
-                    fontSize: 28,
-                  ),
+                          Gaps.h4,
+                          FaIcon(
+                            FontAwesomeIcons.heart,
+                            size: Sizes.size16,
+                            color: Colors.grey.shade600,
+                          ),
+                          Gaps.h2,
+                          const Text(
+                            "2.5M",
+                          )
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-              )
-          ],
+              ),
+              for (var tab in tabs.skip(1))
+                Center(
+                  child: Text(
+                    tab,
+                    style: const TextStyle(
+                      fontSize: 28,
+                    ),
+                  ),
+                )
+            ],
+          ),
         ),
       ),
     );
