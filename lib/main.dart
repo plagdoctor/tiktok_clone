@@ -14,6 +14,9 @@ class TikTokApp extends StatelessWidget {
     return MaterialApp(
       title: 'TikTok Clone',
       theme: ThemeData(
+        //구글 스플래시 효과 투명하게
+        splashColor: Colors.transparent,
+
         scaffoldBackgroundColor: Colors.white,
         primaryColor: const Color(0xFFE9435A),
         appBarTheme: const AppBarTheme(
