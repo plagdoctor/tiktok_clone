@@ -2,11 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/inbox/activity_screen.dart';
+import 'package:http/http.dart' as http;
 
 class InboxScreen extends StatelessWidget {
   const InboxScreen({super.key});
 
-  void _onDmPressed() {}
+  void _onDmPressed() {
+    print('버튼 눌림');
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    };
+    Future<void> fetchData() async {
+      var response = await http.get(
+        Uri.parse('http://localhost:1337/api/restaurants'),
+        headers: headers,
+      );
+
+      print(response.body);
+    }
+
+    fetchData();
+  }
 
   void _onActivityTap(BuildContext context) {
     Navigator.of(context).push(
