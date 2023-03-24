@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MessengerSign extends StatelessWidget {
   final double size;
 
-  const MessengerSign({this.size = 20.0});
+  const MessengerSign({super.key, this.size = 20.0});
 
   @override
   Widget build(BuildContext context) {
