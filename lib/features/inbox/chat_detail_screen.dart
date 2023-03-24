@@ -23,9 +23,9 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
             CircleAvatar(
               radius: Sizes.size24,
               foregroundImage: NetworkImage(
-                "https://avatars.githubusercontent.com/u/3612017",
+                "https://avatars.githubusercontent.com/u/42507121?s=40&v=4",
               ),
-              child: Text('니꼬'),
+              child: Text('미우미우'),
             ),
             MessengerSign(
               size: 20.0,
