@@ -21,7 +21,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
           leading: const CircleAvatar(
             radius: Sizes.size24,
             foregroundImage: NetworkImage(
-              "https://avatars.githubusercontent.com/u/3612017",
+              "https://avatars.githubusercontent.com/u/42507121?s=40&v=4",
             ),
             child: Text('니꼬'),
           ),
