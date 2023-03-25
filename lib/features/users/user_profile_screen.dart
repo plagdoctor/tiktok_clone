@@ -206,9 +206,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   mainAxisSpacing: Sizes.size2,
                   childAspectRatio: 9 / 14,
                 ),
-                itemBuilder: (context, index) => Column(
-                  children: const [
-                    AspectRatio(
+                itemBuilder: (context, index) => Stack(
+                  children: [
+                    const AspectRatio(
                       aspectRatio: 9 / 14,
                       child: FadeInImage(
                         fit: BoxFit.cover,
@@ -216,6 +216,63 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             AssetImage("assets/images/placeholder.png"),
                         image: NetworkImage(
                           "https://images.unsplash.com/photo-1673844969019-c99b0c933e90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80",
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: Sizes.size4,
+                      left: Sizes.size4,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: Sizes.size4, vertical: Sizes.size2),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.circular(Sizes.size4),
+                        ),
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.push_pin,
+                              color: Colors.white,
+                              size: Sizes.size16,
+                            ),
+                            SizedBox(width: Sizes.size4),
+                            Text(
+                              'Pinned',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Sizes.size12,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: Sizes.size4,
+                      left: Sizes.size4,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: Sizes.size4, vertical: Sizes.size2),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(Sizes.size4),
+                        ),
+                        child: Row(
+                          children: const [
+                            FaIcon(
+                              FontAwesomeIcons.play,
+                              color: Colors.white,
+                              size: Sizes.size12,
+                            ),
+                            Gaps.h5,
+                            Text(
+                              '4.1M',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Sizes.size14,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
