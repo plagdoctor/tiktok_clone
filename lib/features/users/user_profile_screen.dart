@@ -219,35 +219,36 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         ),
                       ),
                     ),
-                    Positioned(
-                      top: Sizes.size4,
-                      left: Sizes.size4,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: Sizes.size4, vertical: Sizes.size2),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          borderRadius: BorderRadius.circular(Sizes.size4),
-                        ),
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.push_pin,
-                              color: Colors.white,
-                              size: Sizes.size16,
-                            ),
-                            SizedBox(width: Sizes.size4),
-                            Text(
-                              'Pinned',
-                              style: TextStyle(
+                    if (index < 2)
+                      Positioned(
+                        top: Sizes.size4,
+                        left: Sizes.size4,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: Sizes.size4, vertical: Sizes.size2),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(Sizes.size4),
+                          ),
+                          child: Row(
+                            children: const [
+                              Icon(
+                                Icons.push_pin,
                                 color: Colors.white,
-                                fontSize: Sizes.size12,
+                                size: Sizes.size16,
                               ),
-                            ),
-                          ],
+                              SizedBox(width: Sizes.size4),
+                              Text(
+                                'Pinned',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: Sizes.size12,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
                     Positioned(
                       bottom: Sizes.size4,
                       left: Sizes.size4,
