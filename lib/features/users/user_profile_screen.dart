@@ -178,7 +178,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         ),
                         Gaps.h4,
                         Text(
-                          "https://fe-developers.kakaoent.com/2023/230323-chatgpt-and-fe-developer/",
+                          "https://fe-developers.kakaoent.com",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                           ),
