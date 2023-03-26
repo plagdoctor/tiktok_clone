@@ -21,7 +21,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                title: const Text('니꼬'),
+                title: const Text('miumiu'),
                 actions: [
                   IconButton(
                     onPressed: () {},
@@ -38,15 +38,15 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     const CircleAvatar(
                       radius: 50,
                       foregroundImage: NetworkImage(
-                          "https://avatars.githubusercontent.com/u/3612017"),
-                      child: Text("니꼬"),
+                          "https://avatars.githubusercontent.com/u/42507121?v=4"),
+                      child: Text("miumiu"),
                     ),
                     Gaps.v20,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          "@니꼬",
+                          "@miumiu",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: Sizes.size18,
