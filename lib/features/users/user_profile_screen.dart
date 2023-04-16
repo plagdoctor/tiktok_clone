@@ -33,7 +33,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 title: const Text('miumiu'),
                 actions: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: _onGearPressed,
                     icon: const FaIcon(
                       FontAwesomeIcons.gear,
                       size: Sizes.size20,
