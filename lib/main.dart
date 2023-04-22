@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
 
@@ -28,6 +29,15 @@ class TikTokApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'TikTok Clone',
       themeMode: ThemeMode.system,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale("en"),
+        Locale("ko"),
+      ],
       theme: ThemeData(
         //구글 스플래시 효과 투명하게
         splashColor: Colors.transparent,
