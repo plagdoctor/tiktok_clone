@@ -190,7 +190,7 @@ class _VideoPostState extends State<VideoPost>
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
                   foregroundImage: NetworkImage(
-                    "https://avatars.githubusercontent.com/u/3612017",
+                    "https://avatars.githubusercontent.com/u/42507121?v=4",
                   ),
                   child: Text("니꼬"),
                 ),
