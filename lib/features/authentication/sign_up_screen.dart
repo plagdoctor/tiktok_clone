@@ -56,11 +56,11 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                   Gaps.v20,
-                  const Opacity(
+                  Opacity(
                     opacity: 0.7,
                     child: Text(
-                      "Create a profile, follow other accounts, make your own videos, and more.",
-                      style: TextStyle(
+                      S.of(context).signUpSubtitle(2),
+                      style: const TextStyle(
                         fontSize: Sizes.size16,
                       ),
                       textAlign: TextAlign.center,
@@ -126,7 +126,7 @@ class SignUpScreen extends StatelessWidget {
                   GestureDetector(
                     onTap: () => _onLoginTap(context),
                     child: Text(
-                      'Log in',
+                      S.of(context).logIn("female"),
                       style: TextStyle(
                         fontSize: Sizes.size16,
                         fontWeight: FontWeight.w600,
