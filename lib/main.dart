@@ -4,6 +4,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
 
+import "package:flutter_gen/gen_l10n/intl_generated.dart";
+import 'package:tiktok_clone/generated/l10n.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -30,15 +33,16 @@ class TikTokApp extends StatelessWidget {
       title: 'TikTok Clone',
       themeMode: ThemeMode.system,
       localizationsDelegates: const [
+        //텍스트에 대한 L10n
+        S.delegate,
+        //플러터 기본 위젯에 대한 l10n
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale("en"),
-        Locale("ko"),
-      ],
+      supportedLocales: const [Locale("ko"), Locale("en")],
       theme: ThemeData(
+        useMaterial3: true,
         //구글 스플래시 효과 투명하게
         splashColor: Colors.transparent,
         brightness: Brightness.light,
@@ -56,6 +60,7 @@ class TikTokApp extends StatelessWidget {
         ),
       ),
       darkTheme: ThemeData(
+        useMaterial3: true,
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
         bottomAppBarTheme: BottomAppBarTheme(

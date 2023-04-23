@@ -24,6 +24,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Localizations.override(
       context: context,
+      // 이거 하면 로케일 지역 지정 가능
       // locale: const Locale("es"),
       child: Scaffold(
         appBar: AppBar(
