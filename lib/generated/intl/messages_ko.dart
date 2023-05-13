@@ -20,11 +20,11 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ko';
 
-  static String m1(nameOfTheApp) => "${nameOfTheApp}에 로그인하세요";
+  static String m0(nameOfTheApp) => "${nameOfTheApp}에 로그인하세요";
 
-  static String m3(nameOfTheApp) => "${nameOfTheApp}에 가입하세요";
+  static String m1(nameOfTheApp) => "${nameOfTheApp}에 가입하세요";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) =>
-      <String, Function>{"loginTitle": m1, "signUpTitle": m3};
+      <String, Function>{"loginTitle": m0, "signUpTitle": m1};
 }
