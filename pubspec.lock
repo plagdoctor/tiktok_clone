@@ -112,6 +112,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "10.3.0"
+  go_router:
+    dependency: "direct main"
+    description:
+      name: go_router
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.0.2"
   google_fonts:
     dependency: "direct main"
     description:
@@ -161,6 +168,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  logging:
+    dependency: transitive
+    description:
+      name: logging
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.1"
   matcher:
     dependency: transitive
     description:
