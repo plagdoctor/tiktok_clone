@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Tiktok Clone</string>
+	<string>Flutter Ticktoc</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>tiktok_clone</string>
+	<string>flutter_ticktoc</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -47,5 +47,15 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- For ImagePicker https://pub.dev/packages/image_picker -->
+	<!-- For Camera https://pub.dev/packages/camera -->
+	<key>NSCameraUsageDescription</key>
+	<string>Upload Video for TiktokClone</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Upload Video for TiktokClone</string>
+	<!-- For ImagePicker https://pub.dev/packages/image_picker -->
+	<!-- For Gallery https://pub.dev/packages/gallery_saver -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Save Video for TiktokClone</string>
 </dict>
 </plist>
