@@ -222,7 +222,7 @@ class _UserProfileOldScreenState extends State<UserProfileOldScreen> {
                       child: FadeInImage(
                         fit: BoxFit.cover,
                         placeholder:
-                            AssetImage("assets/images/placeholder.png"),
+                            AssetImage("assets/images/placeholder.jpg"),
                         image: NetworkImage(
                           "https://images.unsplash.com/photo-1673844969019-c99b0c933e90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80",
                         ),
