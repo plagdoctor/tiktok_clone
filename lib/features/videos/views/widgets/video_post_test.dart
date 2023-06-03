@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/videos/widgets/video_button.dart';
-import 'package:tiktok_clone/features/videos/widgets/video_comments.dart';
+import 'package:tiktok_clone/features/videos/views/widgets/video_button.dart';
+import 'package:tiktok_clone/features/videos/views/widgets/video_comments.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -28,10 +27,12 @@ class _VideoPostState extends State<VideoPost>
   final VideoPlayerController _videoPlayerController =
       VideoPlayerController.asset("assets/videos/mp_img3.mp4");
   final Duration _animationDuration = const Duration(milliseconds: 200);
+  final String payload =
+      "Let me go home but you should know\nthere is super long sentence here";
 
   late final AnimationController _animationController;
-
   bool _isPaused = false;
+  bool _showDetail = false;
 
   void _onVideoChange() {
     if (_videoPlayerController.value.isInitialized) {
@@ -45,11 +46,8 @@ class _VideoPostState extends State<VideoPost>
   void _initVideoPlayer() async {
     await _videoPlayerController.initialize();
     await _videoPlayerController.setLooping(true);
-    if (kIsWeb) {
-      await _videoPlayerController.setVolume(0);
-    }
     _videoPlayerController.addListener(_onVideoChange);
-    setState(() {});
+    setState(() {}); // mandatory?
   }
 
   @override
@@ -67,14 +65,11 @@ class _VideoPostState extends State<VideoPost>
 
   @override
   void dispose() {
-    //이 부분 같은 동영상 플레이를 할면 디스포즈를 하면 안될거 같음
     _videoPlayerController.dispose();
-    _animationController.dispose();
     super.dispose();
   }
 
   void _onVisibilityChanged(VisibilityInfo info) {
-    if (!mounted) return; //이거 뭐지??
     if (info.visibleFraction == 1 &&
         !_isPaused &&
         !_videoPlayerController.value.isPlaying) {
@@ -86,7 +81,7 @@ class _VideoPostState extends State<VideoPost>
   }
 
   void _onTogglePause() {
-    if (!mounted) return; //이거 뭐지??
+    if (!mounted) return;
     if (_videoPlayerController.value.isPlaying) {
       _videoPlayerController.pause();
       _animationController.reverse();
@@ -110,6 +105,20 @@ class _VideoPostState extends State<VideoPost>
       builder: (context) => const VideoComments(),
     );
     _onTogglePause();
+  }
+
+  void toggleDetail() {
+    setState(() {
+      _showDetail = !_showDetail;
+    });
+  }
+
+  String handleDetail(String payload) {
+    if (payload.length <= 20) {
+      return payload;
+    }
+
+    return _showDetail ? payload : "${payload.substring(0, 20)}...";
   }
 
   @override
@@ -160,9 +169,9 @@ class _VideoPostState extends State<VideoPost>
             left: 10,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  "@니꼬",
+              children: [
+                const Text(
+                  "@henry",
                   style: TextStyle(
                     fontSize: Sizes.size20,
                     color: Colors.white,
@@ -170,12 +179,46 @@ class _VideoPostState extends State<VideoPost>
                   ),
                 ),
                 Gaps.v10,
-                Text(
-                  "This is my house in Thailand!!!",
-                  style: TextStyle(
-                    fontSize: Sizes.size16,
-                    color: Colors.white,
+                AnimatedCrossFade(
+                  duration: const Duration(microseconds: 2000),
+                  firstChild: Container(),
+                  secondChild: Text(
+                    handleDetail(payload),
+                    style: const TextStyle(
+                      fontSize: Sizes.size16,
+                      color: Colors.white,
+                    ),
                   ),
+                  crossFadeState: _showDetail
+                      ? CrossFadeState.showSecond
+                      : CrossFadeState.showFirst,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: Sizes.size20,
+                      child: _showDetail
+                          ? Container()
+                          : Text(
+                              handleDetail(payload),
+                              style: const TextStyle(
+                                fontSize: Sizes.size16,
+                                color: Colors.white,
+                              ),
+                            ),
+                    ),
+                    GestureDetector(
+                      onTap: toggleDetail,
+                      child: Text(
+                        _showDetail ? "less" : "more",
+                        style: const TextStyle(
+                          fontSize: Sizes.size16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 )
               ],
             ),
@@ -190,9 +233,9 @@ class _VideoPostState extends State<VideoPost>
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
                   foregroundImage: NetworkImage(
-                    "https://avatars.githubusercontent.com/u/42507121?v=4",
+                    "https://avatars.githubusercontent.com/u/51254761?v=4",
                   ),
-                  child: Text("니꼬"),
+                  child: Text("henry"),
                 ),
                 Gaps.v24,
                 const VideoButton(

@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-
-import 'package:tiktok_clone/features/inbox/chat_login_status.dart';
+import 'package:tiktok_clone/utils.dart';
 
 class ChatDetailScreen extends StatefulWidget {
-  const ChatDetailScreen({super.key});
+  static const String routeName = "chatDetail";
+  static const String routeURL = ":chatId";
+
+  final String chatId;
+
+  const ChatDetailScreen({
+    super.key,
+    required this.chatId,
+  });
 
   @override
   State<ChatDetailScreen> createState() => _ChatDetailScreenState();
@@ -20,37 +27,32 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
         title: ListTile(
           contentPadding: EdgeInsets.zero,
           horizontalTitleGap: Sizes.size8,
-          leading: Stack(children: const [
-            CircleAvatar(
-              radius: Sizes.size24,
-              foregroundImage: NetworkImage(
-                "https://avatars.githubusercontent.com/u/42507121?s=40&v=4",
-              ),
-              child: Text('미우미우'),
+          leading: const CircleAvatar(
+            radius: Sizes.size24,
+            foregroundImage: NetworkImage(
+              "https://avatars.githubusercontent.com/u/3612017",
             ),
-            MessengerSign(
-              size: 20.0,
-            )
-          ]),
-          title: const Text(
-            '니꼬',
-            style: TextStyle(
+            child: Text('니꼬'),
+          ),
+          title: Text(
+            '니꼬 (${widget.chatId})',
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
             ),
           ),
           subtitle: const Text('Active now'),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               FaIcon(
                 FontAwesomeIcons.flag,
-                color: Colors.black,
+                color: Theme.of(context).iconTheme.color,
                 size: Sizes.size20,
               ),
               Gaps.h32,
               FaIcon(
                 FontAwesomeIcons.ellipsis,
-                color: Colors.black,
+                color: Theme.of(context).iconTheme.color,
                 size: Sizes.size20,
               ),
             ],
@@ -108,15 +110,13 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
           Positioned(
             bottom: 0,
             width: MediaQuery.of(context).size.width,
-            child: BottomAppBar(
-              color: Colors.grey.shade50,
+            child: Container(
+              color: isDarkMode(context) ? Colors.black : Colors.grey.shade50,
               child: Row(
-                children: [
-                  const Expanded(child: TextField()),
+                children: const [
+                  Expanded(child: TextField()),
                   Gaps.h20,
-                  Container(
-                    child: const FaIcon(FontAwesomeIcons.paperPlane),
-                  )
+                  FaIcon(FontAwesomeIcons.paperPlane)
                 ],
               ),
             ),
