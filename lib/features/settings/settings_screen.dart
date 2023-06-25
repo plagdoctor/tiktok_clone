@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tiktok_clone/features/authentication/repos/authentication_repo.dart';
 import 'package:tiktok_clone/features/videos/view_models/playback_config_vm.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -18,9 +20,8 @@ class SettingsScreen extends ConsumerWidget {
         children: [
           SwitchListTile.adaptive(
             value: ref.watch(playbackConfigProvider).muted,
-            onChanged: (value) => {
-              ref.read(playbackConfigProvider.notifier).setMuted(value),
-            },
+            onChanged: (value) =>
+                ref.read(playbackConfigProvider.notifier).setMuted(value),
             title: const Text("Mute video"),
             subtitle: const Text("Video will be muted by default."),
           ),
@@ -33,7 +34,7 @@ class SettingsScreen extends ConsumerWidget {
           ),
           SwitchListTile.adaptive(
             value: false,
-            onChanged: (val) {},
+            onChanged: (value) {},
             title: const Text("Enable notifications"),
             subtitle: const Text("They will be cute."),
           ),
@@ -55,7 +56,6 @@ class SettingsScreen extends ConsumerWidget {
               if (kDebugMode) {
                 print(date);
               }
-
               final time = await showTimePicker(
                 context: context,
                 initialTime: TimeOfDay.now(),
@@ -63,7 +63,6 @@ class SettingsScreen extends ConsumerWidget {
               if (kDebugMode) {
                 print(time);
               }
-
               final booking = await showDateRangePicker(
                 context: context,
                 firstDate: DateTime(1980),
@@ -100,7 +99,10 @@ class SettingsScreen extends ConsumerWidget {
                       child: const Text("No"),
                     ),
                     CupertinoDialogAction(
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () {
+                        ref.read(authRepo).signOut();
+                        context.go("/");
+                      },
                       isDestructiveAction: true,
                       child: const Text("Yes"),
                     ),
