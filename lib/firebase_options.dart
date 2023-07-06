@@ -69,6 +69,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '775587961471',
     projectId: 'tik-tok-miumiu',
     storageBucket: 'tik-tok-miumiu.appspot.com',
+    androidClientId: '775587961471-1lmkekkpqvoj0oea347e1t72kvgff73i.apps.googleusercontent.com',
     iosClientId: '775587961471-o30sr1jmcmee0bvf3gq0m2pg37ccu1m8.apps.googleusercontent.com',
     iosBundleId: 'com.example.tiktokClone',
   );
