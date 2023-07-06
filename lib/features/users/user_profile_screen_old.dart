@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/settings/settings_screen.dart';
-import 'package:tiktok_clone/features/users/widgets/persistent_tab_bar.dart';
+import 'package:tiktok_clone/features/users/views/widgets/persistent_tab_bar.dart';
 
 class UserProfileOldScreen extends StatefulWidget {
   const UserProfileOldScreen({super.key});
@@ -178,9 +178,9 @@ class _UserProfileOldScreenState extends State<UserProfileOldScreen> {
                       ),
                     ),
                     Gaps.v14,
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         FaIcon(
                           FontAwesomeIcons.link,
                           size: Sizes.size12,
@@ -239,8 +239,8 @@ class _UserProfileOldScreenState extends State<UserProfileOldScreen> {
                             color: Theme.of(context).primaryColor,
                             borderRadius: BorderRadius.circular(Sizes.size4),
                           ),
-                          child: Row(
-                            children: const [
+                          child: const Row(
+                            children: [
                               Icon(
                                 Icons.push_pin,
                                 color: Colors.white,
@@ -267,8 +267,8 @@ class _UserProfileOldScreenState extends State<UserProfileOldScreen> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(Sizes.size4),
                         ),
-                        child: Row(
-                          children: const [
+                        child: const Row(
+                          children: [
                             FaIcon(
                               FontAwesomeIcons.play,
                               color: Colors.white,

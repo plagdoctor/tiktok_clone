@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/settings/settings_screen.dart';
-import 'package:tiktok_clone/features/users/widgets/persistent_tab_bar.dart';
+import 'package:tiktok_clone/features/users/views/widgets/persistent_tab_bar.dart';
 
 class UserProfileScreen extends StatefulWidget {
   final String username;
@@ -186,9 +186,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         ),
                       ),
                       Gaps.v14,
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           FaIcon(
                             FontAwesomeIcons.link,
                             size: Sizes.size12,
