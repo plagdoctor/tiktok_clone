@@ -20,6 +20,17 @@ class VideoModel {
       required this.createdAt,
       required this.title});
 
+  VideoModel.fromJson(Map<String, dynamic> json)
+      : description = json["description"],
+        fileUrl = json["fileUrl"],
+        thumbnailUrl = json["thumbnailUrl"],
+        creatorUid = json["creatorUid"],
+        creator = json["creator"],
+        likes = json["likes"],
+        comments = json["comments"],
+        createdAt = json["createdAt"],
+        title = json["title"];
+
   Map<String, dynamic> toJson() {
     return {
       "description": description,
