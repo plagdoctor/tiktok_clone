@@ -37,7 +37,7 @@ class VideoPostState extends ConsumerState<VideoPost>
   late final AnimationController _animationController;
 
   bool _isPaused = false;
-  // final bool _isMuted = false;
+  // late bool _isMuted = false;
 
   void _onVideoChange() {
     if (_videoPlayerController.value.isInitialized) {
@@ -49,15 +49,20 @@ class VideoPostState extends ConsumerState<VideoPost>
   }
 
   void _initVideoPlayer() async {
-    _videoPlayerController =
-        VideoPlayerController.asset("assets/videos/video.mp4");
-    await _videoPlayerController.initialize();
-    await _videoPlayerController.setLooping(true);
-    if (kIsWeb) {
-      await _videoPlayerController.setVolume(0);
+    try {
+      // print("it's file url ${widget.videoData.fileUrl}");
+      _videoPlayerController =
+          VideoPlayerController.network(widget.videoData.fileUrl);
+      await _videoPlayerController.initialize();
+      await _videoPlayerController.setLooping(true);
+      if (kIsWeb) {
+        await _videoPlayerController.setVolume(0);
+      }
+      _videoPlayerController.addListener(_onVideoChange);
+      setState(() {});
+    } catch (e) {
+      print('failed to load video : $e');
     }
-    _videoPlayerController.addListener(_onVideoChange);
-    setState(() {});
   }
 
   @override
@@ -72,6 +77,8 @@ class VideoPostState extends ConsumerState<VideoPost>
       value: 1.5,
       duration: _animationDuration,
     );
+
+    // _isMuted = false;
   }
 
   @override
@@ -83,8 +90,9 @@ class VideoPostState extends ConsumerState<VideoPost>
 
   void _onPlaybackConfigChanged() {
     if (!mounted) return;
-
-    if (ref.read(playbackConfigProvider).muted) {
+    final muted = ref.read(playbackConfigProvider).muted;
+    ref.read(playbackConfigProvider.notifier).setMuted(!muted);
+    if (muted) {
       _videoPlayerController.setVolume(0);
     } else {
       _videoPlayerController.setVolume(1);
@@ -96,7 +104,8 @@ class VideoPostState extends ConsumerState<VideoPost>
     if (info.visibleFraction == 1 &&
         !_isPaused &&
         !_videoPlayerController.value.isPlaying) {
-      if (ref.read(playbackConfigProvider).autoplay) {
+      final autoplay = ref.read(playbackConfigProvider).autoplay;
+      if (autoplay) {
         _videoPlayerController.play();
       }
     }
@@ -106,6 +115,7 @@ class VideoPostState extends ConsumerState<VideoPost>
   }
 
   void _onTogglePause() {
+    if (!mounted) return;
     if (_videoPlayerController.value.isPlaying) {
       _videoPlayerController.pause();
       _animationController.reverse();

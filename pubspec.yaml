@@ -55,7 +55,7 @@ dependencies:
 
   gallery_saver: 2.3.2
 
-  image_picker: 0.8.6+1
+  image_picker: ^1.0.1
 
   provider: 6.0.5
 
@@ -67,9 +67,13 @@ dependencies:
   firebase_storage: ^11.2.4
   cloud_firestore: ^4.8.0
   cloud_functions: ^4.3.3
+  firebase_messaging: ^14.6.5
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+
+  integration_test:
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
